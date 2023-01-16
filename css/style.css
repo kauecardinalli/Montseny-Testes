@@ -1,0 +1,86 @@
+@import "home.css";
+@import "sobre.css";
+@import "acomodacoes.css";
+@import "reservas.css";
+@import "contato.css";
+@import "login.css";
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+
+* {
+    font-family: Montserrat, arial, sans-serif;
+}
+
+:root {
+    --background-primario-claro: #fffef5;
+    --background-claro-secundario: #fdeecc;
+    --background-escuro: #283618;
+    --cor-letra-escura: #283618;
+    --cor-letra-clara: #fffef5;
+    --cor-principal: #364420;
+    --cor-destaque: #c4972e;
+    --cor-link: #f9af15;
+    --cor-secundaria: #606c38;
+    --cor-apoio: #fac75c;
+    --cor-apoio-claro: #fadea3;
+/*     --mobile-landscape: "@media (max-width: 915px) and (orientation: landscape)";
+    --mobile-portrait: "@media (max-width: 414px) and (orientation: portrait)";
+    --tablet-landscape: "@media (max-width: 1194px) and (orientation: landscape)";
+    --tablet-portrait: "@media (max-width: 1024px) and (orientation: portrait)"; */
+}
+
+
+/* LOGO */
+
+.logo {
+    width: 100%;
+    background-color: var(--background-primario-claro);
+    margin: auto;
+    padding: 1em 0;
+    height: 10em;
+}
+
+.logoFooter {
+    margin: auto;
+    max-width: 10em;
+}
+
+/* BODY */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background-primario-claro);
+    color: var(--cor-letra-escura);
+}
+
+h1,
+h2,
+h3 {
+    color: var(--cor-destaque);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 20px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.social {
+    width: 2em;
+    color: var(--background-primario-claro);
+}
+
+.copyright {
+    text-align: center;
+    padding: 0 0 1em 0;
+}
+
+/* RESPONSIVE */

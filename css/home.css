@@ -1,0 +1,423 @@
+.main-home {
+    width: 90%;
+    max-width: 1280px;
+    margin: auto;
+}
+
+.h2__title {
+    font-size: 2.5em;
+    color: #364420;
+    padding-left: 2rem;
+    margin: 2rem;
+}
+
+.h2__title__sobre {
+    text-align: center;
+    color: var(--cor-letra-clara);
+    background-color: var(--background-escuro);
+}
+
+.chale__container {
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 3%;
+    line-height: 1.8;
+}
+
+.chale__text h2 {
+    max-width: 20em;
+    line-height: 1.4;
+    font-size: 1.9em;
+    color: #c4972e;
+}
+
+.chale__image img {
+    max-width: 35em;
+    border-radius: 40px;
+    padding: 1em;
+}
+
+.chale__text p {
+    max-width: 30em;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    margin: 0;
+}
+
+.sobre__flex {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+.sobre__flex img {
+    width: 340px;
+    margin-left: 45px;
+    margin-top: 2rem;
+    border-radius: 10px;
+}
+
+.sobre__text {
+    padding: 1em;
+    text-align: center;
+    max-width: 60%;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    margin: auto;
+}
+
+.gastronomia_container {
+    display: flex;
+    align-items: center;
+    padding: 0 5rem;
+}
+
+.gastronomia_image img {
+    width: 280px;
+    padding: 1rem;
+    border-radius: 4em;
+    margin-bottom: 2em;
+}
+
+.gastronomia_text {
+    width: 80%;
+    padding: 2rem 0;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    margin: auto;
+}
+
+.gastronomia_h2 {
+    max-width: 15em;
+    line-height: 1.2;
+    font-size: 1.8em;
+    color: #c4972e;
+}
+
+body,
+html {
+    height: 100%;
+}
+
+/* Botões */
+
+.botaoClaro {
+    font-size: larger;
+    font-weight: 700;
+    border: none;
+    margin-top: 2em;
+    padding: 1em;
+    border-radius: 25px;
+    background-color: #f9b115b2;
+    color: var(--background-escuro);
+}
+
+.botaoClaro:hover {
+    background-color: var(--background-escuro);
+    color: var(--cor-letra-clara);
+}
+
+.botaoEscuroMenor {
+    margin-top: 1.5em;
+    border: 0;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 0.8em;
+    border-radius: 10px;
+    background-color: var(--background-escuro);
+    color: var(--cor-letra-clara);
+}
+
+.botaoEscuroMenor a {
+    color: var(--cor-letra-clara);
+    text-decoration: none;
+}
+
+.botaoEscuroMenor:hover {
+    background-color: #c4972e;
+    color: var(--cor-letra-clara);
+}
+
+.botaoEscuroMaior {
+    min-width: 30em;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    border: 0;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 1em;
+    border-radius: 10px;
+    background-color: var(--background-escuro);
+}
+
+.botaoEscuroMaior a {
+    text-decoration: none;
+    color: var(--cor-letra-clara);
+}
+
+.botaoEscuroMaior:hover {
+    background-color: #c4972e;
+    color: var(--cor-letra-clara);
+}
+
+/* imagem do banner */
+.hero-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('../images/bannerHome.jpg');
+    height: 90vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: -0.7em;
+}
+
+.hero-text {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+#slogan {
+    padding: 2rem 0;
+    font-size: 2.5rem;
+    color: var(--cor-letra-clara);
+    font-weight: 600;
+    line-height: 1.8;
+    max-width: 60vw;
+    margin: auto;
+}
+
+.cropped1 {
+    max-width: 35em;
+    min-width: 30em;
+    height: 28em;
+    object-fit: cover;
+}
+
+/*Tablet*/
+
+@media (max-width: 1194px) {
+    .main-home {
+        width: 100%;
+        margin: auto;
+        box-sizing: border-box;
+    }
+    .cropped1 {
+        max-width: 28em;
+        min-width: 25em;
+        margin-right: 2rem 0;
+        height: 22em;
+        margin-left: 32px;
+    }
+
+    .chale__text {
+        margin-right: 80px;
+    }
+
+    .h2__title {
+        font-size: 2rem;
+    }
+
+    .sobre__flex img {
+        width: 260px;
+        margin-left: 45px;
+        margin-top: 2rem;
+        border-radius: 10px;
+    }
+
+    .gastronomia_container img {
+        padding: 3rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .cropped1 {
+        max-width: 28em;
+        min-width: 25em;
+        height: 22em;
+        margin-left: 32px;
+        margin-right: 2rem;
+    }
+
+    .chale__text {
+        margin-right: 80px;
+    }
+
+    .h2__title {
+        font-size: 2rem;
+    }
+
+    .sobre__flex img {
+        width: 260px;
+        margin-left: 35px;
+        margin-top: 1rem;
+        border-radius: 10px;
+    }
+
+    .gastronomia_text {
+        padding: 3rem;
+    }
+}
+
+/*mobile*/
+
+@media (max-width: 915px) {
+    .sobre__flex img {
+        width: 200px;
+        margin-top: 2rem;
+        border-radius: 10px;
+        margin-left: 4rem;
+    }
+
+    .gastronomia_image img {
+        width: 220px;
+    }
+}
+
+@media (max-width: 414px) {
+    body {
+        width: 414px;
+    }
+
+    /*hero*/
+    .hero-image {
+        background: none;
+        height: auto;
+    }
+
+    .hero-text {
+        top: 0;
+        left: 0;
+        transform: none;
+        position: none;
+    }
+
+    #slogan {
+        font-size: 1.5rem;
+    }
+
+    .hero-text h1 {
+        color: black;
+        font-size: 1.5rem;
+        margin-top: 4rem;
+    }
+
+    .cropped1 {
+        display: none;
+    }
+
+    /*chale*/
+    .chale__container {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 0;
+    }
+
+    .chale__text {
+        margin: 0 auto;
+    }
+
+    .chale__text h2 {
+        text-align: center;
+        margin-bottom: 4%;
+    }
+
+    .chale__text p {
+        font-size: 1.4rem;
+        width: 26ch;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    /*sobre*/
+    .sobre__text p {
+        font-size: 1.4rem;
+        width: 25ch;
+        text-align: center;
+        margin: 2rem auto;
+        margin-left: -2rem;
+    }
+
+    .sobre__flex {
+    }
+
+    .sobre__flex img {
+        margin: 0.8rem 0;
+        padding: 0;
+    }
+
+    .sobre__text p {
+        margin-top: 0;
+    }
+
+    /*gastronomia*/
+    .gastronomia_container {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .gastronomia_text {
+        margin: auto;
+
+        padding-top: 1.5rem;
+    }
+
+    .gastronomia_text p {
+        font-size: 1.4rem;
+        width: 80%;
+        text-align: center;
+        margin: 2rem auto;
+        margin-right: 0;
+    }
+
+    .gastronomia_h2 {
+        width: 80%;
+        text-align: center;
+    }
+
+    .h2__title {
+        font-size: 2rem;
+        padding-left: 0;
+    }
+
+    .title1 {
+        display: none;
+    }
+
+    /*botoes*/
+    .botaoClaro {
+        margin: 2rem auto;
+    }
+
+    .botaoEscuroMenor a {
+        margin: 0;
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+
+    div .botaoEscuroMenor {
+        display: block;
+        white-space: nowrap;
+        margin: 2rem auto;
+        font-size: 1.2rem;
+        font-weight: 700;
+        border: none;
+        padding: 1em;
+        border-radius: 25px;
+    }
+
+    .sobre__text .botaoEscuroMaior {
+        min-width: auto;
+        margin: 0 auto;
+        font-size: 1.2rem;
+        font-weight: 700;
+        border: none;
+        padding: 1em;
+        border-radius: 25px;
+    }
+}
