@@ -1,10 +1,10 @@
-@import "home.css";
-@import "sobre.css";
-@import "acomodacoes.css";
-@import "reservas.css";
-@import "contato.css";
-@import "login.css";
-@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import 'home.css';
+@import 'sobre.css';
+@import 'acomodacoes.css';
+@import 'reservas.css';
+@import 'contato.css';
+@import 'login.css';
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 
 * {
     font-family: Montserrat, arial, sans-serif;
@@ -22,12 +22,11 @@
     --cor-secundaria: #606c38;
     --cor-apoio: #fac75c;
     --cor-apoio-claro: #fadea3;
-/*     --mobile-landscape: "@media (max-width: 915px) and (orientation: landscape)";
+    /*     --mobile-landscape: "@media (max-width: 915px) and (orientation: landscape)";
     --mobile-portrait: "@media (max-width: 414px) and (orientation: portrait)";
     --tablet-landscape: "@media (max-width: 1194px) and (orientation: landscape)";
     --tablet-portrait: "@media (max-width: 1024px) and (orientation: portrait)"; */
 }
-
 
 /* LOGO */
 
@@ -61,7 +60,9 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
+    text-decoration: none;
     color: var(--cor-destaque);
 }
 
