@@ -51,8 +51,8 @@ h4 a {
     -moz-border-radius: 2em;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+.formularioContato input::-webkit-outer-spin-button,
+.formularioContato input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }

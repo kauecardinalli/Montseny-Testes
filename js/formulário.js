@@ -61,3 +61,4 @@ function clickSair() {
     localStorage.clear()
     window.location.href = '/pages/public/login.html'
 }
+
