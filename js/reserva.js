@@ -1,145 +1,105 @@
-function reserva() {
-    // Pegar valores dos campos de data de check-in e check-out
-    const checkIn = document.getElementById('check_in').value
-    const checkOut = document.getElementById('check_out').value
-    const qtdePessoas = document.getElementById('quantidade_pessoas').value
-    const tipoQuarto = document.querySelector(
-        'input[name="quarto"]:checked'
-    ).value
-    const valorQuarto = document.getElementById('valor_quarto').innerHTML
-    const valorTotal = valorQuarto * qtdePessoas
+//// Acomodações ////
 
-    // Validar se as datas estão preenchidas e se a quantidade de pessoas é válida
-    if (checkIn === '' || checkOut === '') {
-        alert('Por favor, preencha as datas de check-in e check-out.')
-    } else if (qtdePessoas <= 0 || qtdePessoas > 4) {
-        alert('Por favor, insira uma quantidade válida de pessoas (de 1 a 4).')
-    } else {
-        // Armazenar as informações de reserva no localStorage
-        localStorage.setItem('check_in', checkIn)
-        localStorage.setItem('check_out', checkOut)
-        localStorage.setItem('qtde_pessoas', qtdePessoas)
-        localStorage.setItem('tipo_quarto', tipoQuarto)
-        localStorage.setItem('valor_total', valorTotal)
-
-        // Exibir as informações de reserva na área "Resumo da Reserva"
-        document.getElementById('check_in_resumo').innerHTML = checkIn
-        document.getElementById('check_out_resumo').innerHTML = checkOut
-        document.getElementById('qtde_pessoas_resumo').innerHTML = qtdePessoas
-        document.getElementById('tipo_quarto_resumo').innerHTML = tipoQuarto
-        document.getElementById('valor_total_resumo').innerHTML = valorTotal
-    }
+const acomodacao = {
+   opcao1: { nome: 'Chalé Ofurô', valor: 880 },
+   opcao2: { nome: 'Chalé Master', valor: 800 },
+   opcao3: { nome: 'Chalé Luxo Família', valor: 750 },
 }
 
-/* Note que, é necessário ter um elemento HTML com id 'valor_quarto' para armazenar o valor do quarto, e os elementos HTMLs com ids 'check_in_resumo', 'check_out_resumo', 'qtde_pessoas_resumo', 'tipo_quarto_resumo */
+const opcao = Object.keys(acomodacao)
 
-/////////////////////////
-
-// Função para exibir a modal de serviços adicionais
-function mostrarModal() {
-    document.getElementById('modal').style.display = 'block'
+function selecionado(radio) {
+   const tipoChale = acomodacao[opcao[radio.value]].nome
+   const valorChale = acomodacao[opcao[radio.value]].valor
+   document.querySelector('#resumoChale').innerText = tipoChale
+   resumoValor.hidden = false
+   localStorage.setItem('Acomodação', tipoChale)
+   localStorage.setItem('Valor da diária', valorChale)
+   atualizaInfos()
 }
 
-// Função para fechar a modal de serviços adicionais
-function fecharModal() {
-    document.getElementById('modal').style.display = 'none'
+////////// DATAS ////////////
+
+const dataDefault = new Date().toISOString().split('T')[0]
+const dataFormatada = new Date().toLocaleDateString('pt-BR')
+document.getElementById('check_in').setAttribute('min', dataDefault)
+document.getElementById('check_in').value = dataDefault
+document.querySelector('#resumoCheckIn').textContent = dataFormatada
+
+function dataSelecionadaIn(data) {
+   const dataFormatadaIn = data.value.split('-').reverse().join('-')
+   document.querySelector('#resumoCheckIn').innerText = dataFormatadaIn
+   const dataOut = document.querySelector('#check_in').value
+   document.querySelector('#check_out').setAttribute('min', dataOut)
+   localStorage.setItem('Data Check-in', dataFormatadaIn)
+   atualizaInfos()
 }
 
-// Função para adicionar serviços adicionais
-function adicionarServicos() {
-    const servicosAdicionais = document.getElementsByName('servico')
-    const servicosEscolhidos = []
-    const valorTotalServicos = 0
-
-    // Percorrer os serviços adicionais e adicionar os escolhidos à array
-    for (const i = 0; i < servicosAdicionais.length; i++) {
-        if (servicosAdicionais[i].checked) {
-            servicosEscolhidos.push(servicosAdicionais[i].value)
-            valorTotalServicos += parseFloat(
-                servicosAdicionais[i].dataset.valor
-            )
-        }
-    }
-
-    // Armazenar os serviços escolhidos no localStorage
-    localStorage.setItem('servicos_escolhidos', servicosEscolhidos)
-    localStorage.setItem('valor_servicos', valorTotalServicos)
-
-    // Atualizar o valor total da reserva com o valor dos serviços adicionais
-    const valorTotal =
-        parseFloat(localStorage.getItem('valor_total')) + valorTotalServicos
-    localStorage.setItem('valor_total', valorTotal)
-
-    // Exibir os serviços adicionais escolhidos e seus valores na área "Resumo da Reserva"
-    const servicosHTML = ''
-    for (const i = 0; i < servicosEscolhidos.length; i++) {
-        servicosHTML += '<li>' + servicosEscolhidos[i] + '</li>'
-    }
-    document.getElementById('servicos_escolhidos_resumo').innerHTML =
-        servicosHTML
-    document.getElementById('valor_servicos_resumo').innerHTML =
-        valorTotalServicos
-    document.getElementById('valor_total_resumo').innerHTML = valorTotal
-
-    // Fechar a modal
-    fecharModal()
+function dataSelecionadaOut(data) {
+   let dataFormatadaOut = data.value.split('-').reverse().join('-')
+   document.querySelector('#resumoCheckOut').innerText = dataFormatadaOut
+   localStorage.setItem('Data Check-out', dataFormatadaOut)
+   atualizaInfos()
 }
 
-//////////////////////////////////////////
+function calculaDatas(checkIn, checkOut) {
+   const checkInData = new Date(checkIn)
+   const checkOutData = new Date(checkOut)
 
-// Função para exibir a modal de confirmação da reserva
-function mostrarModalConfirmacao() {
-    // Pegar as informações da reserva do localStorage
-    const checkIn = localStorage.getItem('check_in')
-    const checkOut = localStorage.getItem('check_out')
-    const qtdePessoas = localStorage.getItem('qtde_pessoas')
-    const tipoQuarto = localStorage.getItem('tipo_quarto')
-    const valorTotal = localStorage.getItem('valor_total')
-    const servicosEscolhidos = localStorage
-        .getItem('servicos_escolhidos')
-        .split(',')
-    const valorServicos = localStorage.getItem('valor_servicos')
-
-    // Atualizar as informações da modal de confirmação
-    document.getElementById('tipo_quarto_confirmacao').innerHTML = tipoQuarto
-    document.getElementById('check_in_confirmacao').innerHTML = checkIn
-    document.getElementById('check_out_confirmacao').innerHTML = checkOut
-    document.getElementById('qtde_pessoas_confirmacao').innerHTML = qtdePessoas
-    document.getElementById('valor_total_confirmacao').innerHTML = valorTotal
-    const servicosHTML = ''
-    for (const i = 0; i < servicosEscolhidos.length; i++) {
-        servicosHTML += '<li>' + servicosEscolhidos[i] + '</li>'
-    }
-    document.getElementById('servicos_escolhidos_confirmacao').innerHTML =
-        servicosHTML
-    document.getElementById('valor_servicos_confirmacao').innerHTML =
-        valorServicos
-
-    // Exibir a modal
-    document.getElementById('modal_confirmacao').style.display = 'block'
+   const difMs = checkOutData - checkInData
+   const difDias = difMs / (1000 * 60 * 60 * 24)
+   return difDias
 }
 
-////////////////////////////////////////
+///// Hóspedes /////
 
-// Função para carregar as informações da reserva
-function carregarInformacoes() {
-    // Verificar se há informações de reserva no localStorage
-    if (localStorage.getItem('check_in') !== null) {
-        // Pegar as informações da reserva do localStorage
-        const checkIn = localStorage.getItem('check_in')
-        const checkOut = localStorage.getItem('check_out')
-        const qtdePessoas = localStorage.getItem('qtde_pessoas')
-        const tipoQuarto = localStorage.getItem('tipo_quarto')
-        const valorTotal = localStorage.getItem('valor_total')
-        const servicosEscolhidos = localStorage
-            .getItem('servicos_escolhidos')
-            .split(',')
-        const valorServicos = localStorage.getItem('valor_servicos')
+function qtdPessoas(qtd) {
+   let hospedes = qtd.value
 
-        // Preencher as informações da reserva na área "Resumo da Reserva"
-        document.getElementById('check_in_resumo').innerHTML = checkIn
-        document.getElementById('check_out_resumo').innerHTML = checkOut
-        document.getElementById('qtde_pessoas_resumo').innerHTML = qtdePessoas
-        document.getElementById('tipo_quarto_resumo').innerHTML = tipoQuarto
-    }
+   document.querySelector('#resumoQtdPessoas').innerText = hospedes
+   localStorage.setItem('Número de hóspedes', hospedes)
+   atualizaInfos()
+}
+
+//// Serviços ////
+
+let valorLocalServicos = 0
+
+function checkServicos() {
+   let total = 0
+   const checkboxes = document.querySelectorAll('input[type="checkbox"]')
+   checkboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+         total += parseFloat(checkbox.value)
+      }
+   })
+
+   let totalServicos = document.getElementById('totalServicos')
+   valorLocalServicos = total
+   localStorage.setItem('Valor Serviços', total)
+   totalServicos.innerText = `R$${total},00`
+}
+
+const btnInserir = document.getElementById('inserir')
+btnInserir.addEventListener('click', () => {
+   console.log(valorLocalServicos)
+   atualizaInfos()
+})
+
+//// Previewer ////
+
+const resumoValor = document.querySelector('#resumoValor')
+
+function atualizaInfos() {
+   const checkIn = document.getElementById('check_in').value
+   const checkOut = document.getElementById('check_out').value
+   const valorSalvo = Number(localStorage.getItem('Valor da diária'))
+   const totalDias = calculaDatas(checkIn, checkOut)
+   const valorTotal = valorSalvo * totalDias + valorLocalServicos
+
+   resumoValor.innerText = valorTotal.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+   })
+   localStorage.setItem('Valor total', valorTotal)
 }
