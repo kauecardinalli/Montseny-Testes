@@ -1,0 +1,60 @@
+<template>
+  <div>
+    <form>
+      <div>
+        <label for="opcao1">Chalé Ofurô</label>
+        <input type="radio" id="opcao1" v-model="selectedOption" value="opcao1" @change="selecionado"/>
+      </div>
+      <div>
+        <label for="opcao2">Chalé Master</label>
+        <input type="radio" id="opcao2" v-model="selectedOption" value="opcao2" @change="selecionado"/>
+      </div>
+      <div>
+        <label for="opcao3">Chalé Luxo Família</label>
+        <input type="radio" id="opcao3" v-model="selectedOption" value="opcao3" @change="selecionado"/>
+      </div>
+    </form>
+    <div id="resumoChale">{{acomodacao[selectedOption].nome}}</div>
+    <div>
+      <label for="check_in">Check-in</label>
+      <input type="date" id="check_in" v-model="checkIn" min="currentDate" @change="dataSelecionadaIn"/>
+    </div>
+    <div>
+      <label for="check_out">Check-out</label>
+      <input type="date" id="check_out" v-model="checkOut" :min="checkIn" @change="dataSelecionadaOut"/>
+    </div>
+    <div id="resumoCheckIn">{{checkIn}}</div>
+    <div id="resumoCheckOut">{{checkOut}}</div>
+    <div>
+      <label for="qtd">Número de hóspedes</label>
+      <input type="number" id="qtd" v-model="qtdPessoas" @change="qtdPessoas"/>
+    </div>
+    <div id="resumoQtdPessoas">{{qtdPessoas}}</div>
+    <div id="resumoValor">{{valorTotal}}</div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      acomodacao: {
+        opcao1: { nome: 'Chalé Ofurô', valor: 880 },
+        opcao2: { nome: 'Chalé Master', valor: 800 },
+        opcao3: { nome: 'Chalé Luxo Família', valor: 750 },
+      },
+      selectedOption: "",
+      checkIn: new Date().toISOString().split('T')[0],
+      checkOut: "",
+      qtdPessoas: "",
+      valorTotal: "",
+    };
+  },
+  computed: {
+    currentDate() {
+      return new Date().toISOString().split('T')[0];
+    },
+  },
+  methods: {
+    selecionado() {
+      const
